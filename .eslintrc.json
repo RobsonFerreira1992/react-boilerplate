@@ -1,8 +1,16 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true,
+        "node": true
     },
+    "prettier/prettier" : [
+        "error",
+        {
+          "endOfLine": "auto",
+        }
+      ],
     "settings":{
         "react":{
             "version": "detect"
