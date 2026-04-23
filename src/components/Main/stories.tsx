@@ -1,20 +1,24 @@
-import { Story, Meta } from '@storybook/react/types-6-0'
+import type { Meta, StoryObj } from '@storybook/react'
 import Main from '.'
 
-export default {
+const meta: Meta<typeof Main> = {
   title: 'Main',
   component: Main,
-  args:{
+  args: {
     title: 'title default',
     description: 'description default'
   }
-  
-} as Meta
-
-export const Basic: Story = (args) => <Main {...args} /> 
-Basic.args ={
-  title: 'title basic',
-  description: 'description basic'
-
 }
-export const Default: Story = (args) => <Main {...args} /> 
+
+export default meta
+
+type Story = StoryObj<typeof Main>
+
+export const Default: Story = {}
+
+export const Basic: Story = {
+  args: {
+    title: 'title basic',
+    description: 'description basic'
+  }
+}

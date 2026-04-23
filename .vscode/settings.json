@@ -1,6 +1,10 @@
 {
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "node:test",
+    "**/node_modules/@types/node/test.d.ts"
+  ]
 }

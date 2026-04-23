@@ -1,11 +1,32 @@
+/** @type {import('jest').Config} */
 module.exports = {
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/cypress/'],
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts(x)?', '!src/**/stories.tsx'],
+  coverageProvider: 'v8',
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/stories.tsx',
+    '!src/**/*.d.ts',
+    '!src/app/**/layout.tsx',
+    '!src/app/**/page.tsx'
+  ],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
-  modulePaths: ['<rootDir>/src/'],
+  moduleDirectories: ['node_modules', '<rootDir>/src'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '\\.(css|scss|sass)$': '<rootDir>/.jest/styleMock.js'
+  },
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
+    '^.+\\.(t|j)sx?$': [
+      '@swc/jest',
+      {
+        jsc: {
+          transform: {
+            react: { runtime: 'automatic' }
+          }
+        }
+      }
+    ]
   }
 }
